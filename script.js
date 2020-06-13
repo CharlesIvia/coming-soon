@@ -23,5 +23,22 @@ const interval = setInterval(() => {
   const min = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
   const sec = Math.floor((difference % (1000 * 60)) / 1000);
 
-  console.log(days, hours, min, sec);
+  //   console.log(days, hours, min, sec);
+
+  //Update dom
+
+  element.innerHTML = `
+        <div>${days} <p class="sub">days</p></div>
+        <div>${hours} <p class="sub">hours</p></div>
+        <div>${min} <p class="sub">minutes</p></div>
+        <div>${sec} <p class="sub">seconds</p></div>
+    `;
+
+  if (days <= 0) {
+    //Stop countdown
+    clearInterval(interval);
+    element.previousElementSibling.textContent = "";
+    element.textContent = "Launch Date Passed!";
+    element.style.color = "cyan";
+  }
 }, 1000);
